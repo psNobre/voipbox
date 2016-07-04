@@ -1,0 +1,149 @@
+<nav class='section-nav'>
+    <div class="ui top menu">
+        <a class="item" ui-sref="core.users.list">
+            <i class="arrow left icon"></i>
+            Back
+        </a>
+
+        <a class="item right" ng-click="logout()">
+            <i class="sign out icon"></i> Logout
+        </a>
+    </div>      
+</nav>
+
+<div class="ui container section">
+    <form name="addUserForm" class="ui form">
+
+        <h4 class="ui dividing header">Add a new User</h4>
+
+        <label>Name</label>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" ng-model="candidate.username"  name="username" ng-required="true" ng-maxlength="10" ng-minlength="4" placeholder="User Name">
+            </div>
+        </div>
+
+        <label>Password</label>
+        <div class="two fields">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" ng-model="candidate.password"  name="password" ng-required="true" placeholder="Password">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="checkmark icon"></i>
+                    <input type="password" ng-model="candidate.confirmPassword" name="confirmPassword" ng-required="true" placeholder="Confirm Password">
+                </div>
+            </div>
+        </div>
+
+        <label>Type</label>
+        <div class="field">
+            <select class="" ng-model="candidate.type" name="type" ng-required="true" ng-options="type as type for type in userTypes">
+                <option value="">Select Type</option>
+            </select>
+        </div>
+
+        <button class="ui button" ng-disabled="addUserForm.$invalid" ng-click="addUser(candidate)">Add User</button>
+
+    </form>
+
+    <!-- Mensagens de alerta -->
+    <div class="ui negative message" ng-show="addUserForm.username.$error.required && addUserForm.username.$dirty">Fill the Username field!</div>
+
+    <div class="ui negative message" ng-show="addUserForm.password.$error.required && addUserForm.password.$dirty">Forgot your password!</div>
+
+    <div class="ui negative message" ng-show="addUserForm.confirmPassword.$error.required && addUserForm.confirmPassword.$dirty">You forgot to confirm the password!</div>
+
+    <div class="ui negative message" ng-show="addUserForm.type.$error.required && addUserForm.type.$dirty">You need set the user type!</div>
+
+    <div class="ui negative message" ng-show="addUserForm.username.$error.maxlength">Username field must have at most 10 characters!</div>
+
+    <div class="ui negative message" ng-show="addUserForm.username.$error.minlength">Username field must have at least 4 characters!</div>
+
+</div>
+
+<!-- MODAL ALERT -->
+<div id="alertAddUserModalSuccess" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="checkmark green  icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to add some more User?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="two fluid ui inverted buttons">
+      <div class="ui red basic deny inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alertAddUserModalError" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="remove red icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to try again?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="two fluid ui inverted buttons">
+      <div class="ui red basic deny inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div id="alertUserModalSuccess" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Message Alert
+    </div>
+    <div class="image content">
+        <div class="image">
+            <i class="checkmark green icon"></i>
+        </div>
+        <div class="description">
+            <h3>{{message}}</h3>
+        </div>
+    </div>
+</div>
+
+<div id="alertUserModalError" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Message Alert
+    </div>
+    <div class="image content">
+        <div class="image">
+            <i class="remove red icon"></i>
+        </div>
+        <div class="description">
+            <h3>{{message}}</h3>
+        </div>
+    </div>
+</div> -->

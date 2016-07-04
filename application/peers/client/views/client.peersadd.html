@@ -1,0 +1,135 @@
+<nav class='section-nav'>
+    <div class="ui top menu">
+        <a class="item" ui-sref="core.peers.list">
+            <i class="arrow left icon"></i>
+            Back
+        </a>
+
+        <a class="item right" ng-click="logout()">
+            <i class="sign out icon"></i> Logout
+        </a>
+    </div>      
+</nav>
+
+<div class="ui container section">
+    <form  name="addPeerForm" class="ui form">
+
+        <h4 class="ui dividing header">Add a new Peer</h4>
+
+        <label>Peer Authentication</label>
+        <div class="two fields">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" ng-model="candidate.name" ng-required="true" name="user" placeholder="User">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" ng-model="candidate.password" ng-required="true" name="password" placeholder="Password">
+                </div>
+            </div>
+        </div>
+
+        <label>Peer Configuration</label>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="text telephone icon"></i>
+                <input type="text" ng-model="candidate.extension" ng-required="true" name="extension" placeholder="Extension">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="laptop icon"></i>
+                <input type="text" ng-model="candidate.host" ng-required="true" name="host" placeholder="Host (eg. dynamic)">
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="field">
+                <select class="" ng-model="candidate.type" name="type" ng-required="true" ng-options="type as type for type in astType">
+                    <option value="">Select Type</option>
+                </select>
+            </div>
+            <div class="field">
+
+                <select class="" ng-model="candidate.context" name="context" ng-required="true" ng-options="context as context for context in astContext">
+                    <option value="">Select Context</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="ui button" ng-disabled="addPeerForm.$invalid" ng-click="addPeer(candidate)">Add Peer</button>   
+    </form>
+
+    <!-- Mensagens de alerta -->
+    <div class="ui negative message" ng-show="addPeerForm.user.$error.required && addPeerForm.user.$dirty">Fill the User field!</div>
+
+    <div class="ui negative message" ng-show="addPeerForm.password.$error.required && addPeerForm.password.$dirty">Forgot the password!</div>
+
+    <div class="ui negative message" ng-show="addPeerForm.extension.$error.required && addPeerForm.extension.$dirty">302</div>
+
+    <div class="ui negative message" ng-show="addPeerForm.type.$error.required && addPeerForm.type.$dirty">You need set the user type!</div>
+
+    <div class="ui negative message" ng-show="addPeerForm.context.$error.required && addPeerForm.context.$dirty">You need set the user context!</div>
+
+    <div class="ui negative message" ng-show="addPeerForm.host.$error.required && addPeerForm.host.$dirty">Fill the Host field, by default, seting "dynamic"!</div>
+
+</div>
+
+
+<!-- MODAL ALERT -->
+<div id="alertAddPeerModalSuccess" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="checkmark green  icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to add some more Peer?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="two fluid ui inverted buttons">
+      <div class="ui red basic deny inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alertAddPeerModalError" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="remove red icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to try again?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="two fluid ui inverted buttons">
+      <div class="ui red basic deny inverted button">
+        <i class="remove icon"></i>
+        No
+      </div>
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>
+</div>

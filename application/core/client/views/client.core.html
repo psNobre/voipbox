@@ -1,0 +1,33 @@
+<div class="content">
+
+	<aside class="main-aside">
+
+		<header class='logo'>
+			<span class = 'logo-text'>Voip Box</span>
+		</header>
+
+		<ul>
+			<li class='item' ui-sref="core.dashboard">
+				<i class="dashboard icon"></i>  
+				<span class='text'>Dashboard</span> 
+			</li>
+			<li class='item' ui-sref="core.users.list">
+				<i class="users icon"></i>
+				<span class='text'>Users</span>
+			</li>
+			<li class='item' ui-sref="core.peers.list">
+				<i class="fax icon"></i> 
+				<span class='text'>Peers</span>
+			</li>
+			<li class='item' ui-sref="core.calls">
+				<i class="phone icon"></i> 
+				<span class='text'>Calls</span> 
+			</li>
+		</ul>
+	</aside>
+
+	<div class="area">
+		<div ui-view></div>
+	</div>
+
+</div>

@@ -1,0 +1,12 @@
+{
+  "name": "x",
+  "version": "0.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "~0.2.15",
+    "jquery": "^2.2.2",
+    "semantic": "semantic-ui#^2.1.8",
+    "angular-google-chart": "^0.1.0"
+  }
+}

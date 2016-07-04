@@ -1,0 +1,125 @@
+<nav class='section-nav'>
+    <div class="ui top menu">
+        <a class="item" ui-sref="core.users.list">
+            <i class="arrow left icon"></i>
+            Back
+        </a>
+
+        <a class="item right" ng-click="logout()">
+            <i class="sign out icon"></i> Logout
+        </a>
+    </div>      
+</nav>
+
+<div class="ui container section">
+    <form name="updUserForm" class="ui form">
+
+        <h4 class="ui dividing header">Edit User</h4>
+
+        <label>Name</label>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" ng-model="candidate.username"  name="username" ng-required="true" ng-maxlength="10" ng-minlength="4" placeholder="User Name">
+            </div>
+        </div>
+
+        <label>Type</label>
+        <div class="field">
+            <select class="" name="type" ng-model="candidate.type" ng-required="true" ng-options="type as type for type in userTypes">
+                <option value="">Select Type</option>
+            </select>
+        </div>
+
+        <button class="ui button" ng-disabled="updUserForm.$invalid" ng-click="updUser(candidate)">Update User</button>
+
+    </form>
+
+    <!-- Mensagens de alerta -->
+    <div class="ui negative message" ng-show="updUserForm.username.$error.required && updUser.username.$dirty">Fill the Username field!</div>
+
+    <div class="ui negative message" ng-show="updUserForm.type.$error.required && updUser.type.$dirty">You need set the user type!</div>
+
+    <div class="ui negative message" ng-show="updUserForm.username.$error.maxlength">Username field must have at most 10 characters!</div>
+
+    <div class="ui negative message" ng-show="updUserForm.username.$error.minlength">Username field must have at least 4 characters!</div>
+
+</div>
+
+<!-- MODAL ALERT -->
+<div id="alertUpdUserModalSuccess" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="checkmark green icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to try again?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="fluid ui inverted buttons">
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Ok
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alertUpdUserModalError" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="remove red icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to try again?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="fluid ui inverted buttons">
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Ok
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div id="alertUserModalSuccess" class="ui basic modal">
+<i class="close icon"></i>
+<div class="header">
+Message Alert
+</div>
+<div class="image content">
+<div class="image">
+<i class="checkmark green icon"></i>
+</div>
+<div class="description">
+<h3>{{message}}</h3>
+</div>
+</div>
+</div>
+
+
+
+<div id="alertUserModalError" class="ui basic modal">
+<i class="close icon"></i>
+<div class="header">
+Message Alert
+</div>
+<div class="image content">
+<div class="image">
+<i class="remove red icon"></i>
+</div>
+<div class="description">
+<h3>{{message}}</h3>
+</div>
+</div>
+</div> -->

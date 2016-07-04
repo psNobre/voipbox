@@ -1,0 +1,129 @@
+ <nav class='section-nav'>
+    <div class="ui top menu">
+        <a class="item" ng-class="{disabled: isStandartUser(userType)}" ui-sref="core.users.add">
+            <i ng-if="isStandartUser(userType)" class="lock icon"></i>
+            <i ng-if="!isStandartUser(userType)" class="add user icon"></i>
+            Add User
+        </a>
+
+        <a class="item right" ng-click="logout()">
+            <i class="sign out icon"></i> Logout
+        </a>
+    </div>      
+</nav>
+
+<div class="ui container section">
+    <div class='header-table'>
+        <span class="ui tag">
+            Users    
+        </span>
+        <div class="ui right action left icon input">
+            <i class="search icon"></i>
+            <input type="text" ng-model="searchCriterion" placeholder="Search">
+            <div class="ui basic floating dropdown button">
+                <div class="text">Filter By</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item" ng-repeat="filter in filters" ng-click="setFilterBy(filter)">
+                        <i class="{{filter.circleColor}} circle icon"></i>  
+                        {{filter.category}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="ui selectable celled table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Type</th>
+                <th>Update User</th>
+                <th>Delete User</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users | filter: searchCriterion | filter: filterBy.value:filterBy.forced">
+                <td>{{user.username}}</td>
+                <td>{{user.type}}</td>
+                <td><button class="ui blue button" ng-disabled="isStandartUser(userType)" ui-sref="core.users.upd({edtUser: user})">Edit</button></td>
+                <td><button class="ui red button" ng-disabled="isStandartUser(userType)" ng-click="deleteUser(user)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- MODAL ALERT -->
+<div id="alertDelUserModalSuccess" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="checkmark green icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}}</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="fluid ui inverted buttons">
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Ok
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="alertDelUserModalError" class="ui basic modal">
+  <div class="header">
+    Message Alert
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="remove red icon"></i>
+    </div>
+    <div class="description">
+      <p>{{message}} Would you like to try again?</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="fluid ui inverted buttons">
+      <div class="ui green basic approve inverted button">
+        <i class="checkmark icon"></i>
+        Ok
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="alertUserModalSuccess" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Message Alert
+    </div>
+    <div class="image content">
+        <div class="image">
+            <i class="checkmark green icon"></i>
+        </div>
+        <div class="description">
+            <h3>{{message}}</h3>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div id="alertUserModalError" class="ui basic modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Message Alert
+    </div>
+    <div class="image content">
+        <div class="image">
+            <i class="remove red icon"></i>
+        </div>
+        <div class="description">
+            <h3>{{message}}</h3>
+        </div>
+    </div>
+</div> -->

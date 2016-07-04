@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VoipBox</title>
+
+	{% for file in cssFiles %}
+		<link rel="stylesheet" href="{{file}}">
+	{% endfor %}
+ 
+	{% if process.env.NODE_ENV == "production" %}
+		<link rel="stylesheet" type="text/css" href="/public/aggregateds/aggregated.min.css" />
+	{% endif %}
+
+</head>
+<body>
+	
+	<ui-view />
+	
+	{% if process.env.NODE_ENV == "production" %}
+		<script src="/public/aggregateds/aggregated.min.js"></script>	
+	{% endif %}
+
+	{% for file in jsFiles %}
+		<script src="{{file}}"></script>
+	{% endfor %}
+</body>
+</html>
